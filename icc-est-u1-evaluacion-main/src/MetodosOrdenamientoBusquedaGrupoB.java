@@ -1,32 +1,52 @@
 import models.Carro;
 
-/**
- * MetodosOrdenamientoBusqueda
- * 
- * Aqui programar los motodos de busqueda y ordenamiento
- * segun le tocaron en su enunciado de la evaluacion
- * 
- */
 public class MetodosOrdenamientoBusquedaGrupoB {
 
-    // Selection sort by year Asendentemente
-    public void sortBYearWithBubbleAvnAsendente(Carro[] people) {
-        // TODO: Implement selection sort by age
+    public void sortByYearWithBubbleAscending(Carro[] cars) {
+        int n = cars.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (cars[j].getYear() > cars[j + 1].getYear()) {
+                    Carro temp = cars[j];
+                    cars[j] = cars[j + 1];
+                    cars[j + 1] = temp;
+                }
+            }
+        }
+    }
+    public void sortByYearWithBubbleDescending(Carro[] cars) {
+        int n = cars.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (cars[j].getYear() < cars[j + 1].getYear()) {
+                    Carro temp = cars[j];
+                    cars[j] = cars[j + 1];
+                    cars[j + 1] = temp;
+                }
+            }
+        }
     }
 
-    // Selection sort by year Desendentemente
-    public void sortBYearWithBubbleAvnDesendente(Carro[] people) {
-        // TODO: Implement selection sort by height
-    }
+    public int searchBinaryByYear(Carro[] cars, int year) {
+        int left = 0;
+        int right = cars.length - 1;
 
-    // Binary search by year
-    public int searchBinaryByYear(Carro[] people, int height) {
-        // TODO: Implement binary search by height
-        return -1; // Placeholder return value
-    }
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
 
-    // Metodo que imprime el listado de personas
-    public void showPeople() {
-        // TODO: Implement showPeople
+            if (cars[mid].getYear() == year) {
+                return mid;
+            } else if (cars[mid].getYear() < year) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+    public void showCars(Carro[] cars) {
+        for (Carro car : cars) {
+            System.out.println(car);
+        }
     }
 }

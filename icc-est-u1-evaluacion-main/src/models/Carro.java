@@ -3,7 +3,6 @@ package models;
 public class Carro {
     private String name;
     private String model;
-
     private int year;
 
     public Carro(String name, String model, int year) {
@@ -11,29 +10,17 @@ public class Carro {
         this.model = model;
         this.year = year;
     }
-
-    public String getPlaca() {
-        return name;
-    }
-
-    public void setPlaca(String name) {
-        this.name = name;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
+    
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null && !name.trim().isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Nombre invalido.");
+        }
     }
 
     public String getModel() {
@@ -44,4 +31,20 @@ public class Carro {
         this.model = model;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        if (year > 1885) {
+            this.year = year;
+        } else {
+            System.out.println("Anio invalido.");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Carro [Nombre: " + name + ", Modelo: " + model + ", Año: " + year + "]";
+    }
 }
